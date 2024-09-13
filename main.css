@@ -8,7 +8,7 @@ body {
     align-items: center;
     min-height: 100vh;
     background-color: #0e0f11;
-	font-family: "DM Serif Text", serif;
+    
 }
 
 .grid-container {
@@ -19,75 +19,89 @@ body {
         "footer footer footer";
     grid-gap: 10px;
     padding: 10px;
-	width: 100%;
+    width: 100%;
     height: 100%;
     box-sizing: border-box;
-    background-color: #8a3324;
+    background-image: url(pic/bg.jpg);
+    
 }
 
 #header {
     grid-area: header;
-    background-color: #8a3324;
-    color: #f5f5dc;
+    font-family: "Lobster", sans-serif;
+    color: #fff;
     padding: 20px;
     text-align: center;
 }
 
 #main1 {
     grid-area: main1;
-    background-color: #f7f4f1;
-	color: #0e0f11;
+    border: 2px solid #ccc; /* เพิ่มกรอบที่มีสีเทาอ่อน */
+    color: #0e0f11;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ค่าความกว้างของเงา, การกระจาย, และสีของเงา */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: "Bree Serif", serif;
 }
-
 
 #main2 {
     grid-area: main2;
-	color: #0e0f11;
-    background-color: #f7f4f1;
+    color: #0e0f11;
+    border: 2px solid #ccc; /* เพิ่มกรอบที่มีสีเทาอ่อน */
     padding: 20px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ค่าความกว้างของเงา, การกระจาย, และสีของเงา */
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: "Bree Serif", serif;
 }
 
 #right {
     grid-area: right;
-    background-color: #f7f4f1;
-	color: #0e0f11;
+    border: 2px solid #ccc; /* เพิ่มกรอบที่มีสีเทาอ่อน */
+    color: #0e0f11;
     padding: 20px;
     text-align: center;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ค่าความกว้างของเงา, การกระจาย, และสีของเงา */
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-family: "Bree Serif", serif;
 }
-img{
-	width: 100%;
-	height: auto;
-	object-fit: contain;
-	
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 #footer {
     grid-area: footer;
-    background-color: #f7f4f1;
+    
     color: #0e0f11;
     padding: 20px;
     text-align: center;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* ค่าความกว้างของเงา, การกระจาย, และสีของเงา */
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+     text-decoration: none;
+     font-family: "Bree Serif", serif;
 }
+#footer a {
+    text-decoration: none; /* ลบขีดใต้คำ */
+    color: #fff;
+}
+
+
 .fleximg {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-	justify-content: center;
-	margin-right: 30px;
+    justify-content: center;
+    margin-right: 30px;
 }
+
 .fleximg img {
     flex: 1 1 calc(50% - 10px);
     max-width: calc(50% - 10px);
     height: auto;
 }
+
 .fleximg2 {
     display: flex;            
     justify-content: center;  
@@ -101,8 +115,16 @@ img{
     height: auto;            
 }
 
-
-
+@media (max-width: 1024px) {
+    .grid-container {
+        grid-template-areas:
+            "header"
+            "main1"
+            "main2"
+            "right"
+            "footer";
+    }
+}
 
 @media (max-width: 768px) {
     .grid-container {
@@ -113,15 +135,51 @@ img{
             "right"
             "footer";
     }
-	.fleximg {
+
+    .fleximg {
         display: flex;
-   	 	flex-wrap: wrap;
-    	gap: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
     .fleximg img {
         width: 100%;
         margin-bottom: 10px;
     }
-	
+}
+
+.grid-container > div {
+    position: relative;
+}
+
+.grid-container > div:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+.grid-container > div:hover {
+    z-index: 2;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.grid-container > div:hover > * {
+    position: relative;
+    z-index: 3;
+}
+
+#header, #main1, #main2, #right, #footer {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-container > div:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
